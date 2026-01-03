@@ -1,8 +1,12 @@
 import { useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
   const [text, setText] = useState('');
+  const addTask = () => {
+    // Add task logic here
+    alert(text);
+  };
 
   return (
     <View>
@@ -17,6 +21,9 @@ export default function HomeScreen() {
         onChangeText={setText}
         value={text}
       />
+      <TouchableOpacity onPress={addTask}>
+        <Text>Add Text</Text>
+      </TouchableOpacity>
     </View>
   );
 }
