@@ -1,44 +1,54 @@
+import styles from '@/styles/todo.styles';
 import { useState } from 'react';
-import { FlatList, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
 export default function HomeScreen() {
-  const [text, setText] = useState('');
-  const [texts, setTexts] = useState<string[]>([]);
+  const [task, setTask] = useState('');
+  const [tasks, setTasks] = useState<string[]>([]);
+
   const addTask = () => {
-    // Add task logic here
-    if (!text) return;
-    setTexts([...texts, text]);
-    setText('');
-    alert(text);
+    if (!task.trim()) return;
+    setTasks([...tasks, task]);
+    setTask('');
   };
+
   const deleteTask = (index: number) => {
-  setTexts(texts.filter((_, i) => i !== index));
+    setTasks(tasks.filter((_, i) => i !== index));
   };
 
   return (
-    <View>
-      <Text>Todo App</Text>
-      <TextInput
-        style={{
-          height: 40,
-          width: 200,
-          borderColor: 'gray',
-          borderWidth: 1,
-        }}
-        onChangeText={setText}
-        value={text}
-      />
-      <TouchableOpacity onPress={addTask}>
-        <Text>Add Text</Text>
-      </TouchableOpacity>
+    <View style={styles.container}>
+      <Text style={styles.title}>📝 Todo App</Text>
+
+      <View style={styles.inputRow}>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter task"
+          value={task}
+          onChangeText={setTask}
+        />
+
+        <TouchableOpacity style={styles.addBtn} onPress={addTask}>
+          <Text style={styles.addText}>Add</Text>
+        </TouchableOpacity>
+      </View>
 
       <FlatList
-        data={texts}
-        //renderItem={({ item }) => <Text>{item}</Text>}
+        data={tasks}
+        keyExtractor={(_, index) => index.toString()}
         renderItem={({ item, index }) => (
-          <TouchableOpacity onPress={() => deleteTask(index)}>
-            <Text>{item}</Text>
-          </TouchableOpacity>
+          <View style={styles.taskItem}>
+            <Text style={styles.taskText}>{item}</Text>
+            <TouchableOpacity onPress={() => deleteTask(index)}>
+              <Text style={styles.delete}>❌</Text>
+            </TouchableOpacity>
+          </View>
         )}
       />
     </View>
