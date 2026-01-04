@@ -1,3 +1,4 @@
+import TodoItem from '@/components/TodoItem';
 import styles from '@/styles/todo.styles';
 import { useState } from 'react';
 import {
@@ -7,6 +8,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
+
 
 export default function HomeScreen() {
   const [task, setTask] = useState('');
@@ -24,7 +26,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>📝 Todo App</Text>
+      <Text style={styles.title}>📝 Todo List</Text>
 
       <View style={styles.inputRow}>
         <TextInput
@@ -43,12 +45,10 @@ export default function HomeScreen() {
         data={tasks}
         keyExtractor={(_, index) => index.toString()}
         renderItem={({ item, index }) => (
-          <View style={styles.taskItem}>
-            <Text style={styles.taskText}>{item}</Text>
-            <TouchableOpacity onPress={() => deleteTask(index)}>
-              <Text style={styles.delete}>❌</Text>
-            </TouchableOpacity>
-          </View>
+          <TodoItem
+            text={item}
+            onDelete={() => deleteTask(index)}
+          />
         )}
       />
     </View>
