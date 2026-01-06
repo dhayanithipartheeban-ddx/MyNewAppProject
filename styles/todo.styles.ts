@@ -9,7 +9,13 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    marginBottom: 20
+    marginBottom: 20,
+    color: '#e5f45dff'
+  },
+  image: {
+    flex: 1,
+    justifyContent: 'center',
+    padding: 10
   },
   inputRow: {
     flexDirection: 'row',
@@ -18,15 +24,17 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#aaa',
+    borderColor: '#bccad2ff',
     borderRadius: 5,
-    padding: 10
+    padding: 10,
+    color:"#C0C0C0"
   },
   addBtn: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#349aa1ff',
     padding: 12,
     marginLeft: 10,
-    borderRadius: 5
+    borderRadius: 5.
+
   },
   addText: {
     color: '#fff',

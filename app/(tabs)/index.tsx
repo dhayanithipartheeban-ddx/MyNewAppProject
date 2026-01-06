@@ -3,6 +3,7 @@ import styles from '@/styles/todo.styles';
 import { useState } from 'react';
 import {
   FlatList,
+  ImageBackground,
   Text,
   TextInput,
   TouchableOpacity,
@@ -13,6 +14,7 @@ import {
 export default function HomeScreen() {
   const [task, setTask] = useState('');
   const [tasks, setTasks] = useState<string[]>([]);
+  const image = {uri: 'https://img.freepik.com/free-photo/plain-smooth-green-wall-texture_53876-129746.jpg?semt=ais_hybrid&w=740&q=80'};
 
   const addTask = () => {
     if (!task.trim()) return;
@@ -26,12 +28,15 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
+      <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Text style={styles.title}>📝 Todo List</Text>
 
       <View style={styles.inputRow}>
         <TextInput
           style={styles.input}
           placeholder="Enter task"
+          placeholderTextColor="#C0C0C0"
+          selectionColor={'#e5f45dff'}
           value={task}
           onChangeText={setTask}
         />
@@ -51,6 +56,7 @@ export default function HomeScreen() {
           />
         )}
       />
+      </ImageBackground>
     </View>
   );
 }
