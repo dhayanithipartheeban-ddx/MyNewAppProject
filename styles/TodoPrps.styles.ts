@@ -21,7 +21,7 @@ const PropsStyle = StyleSheet.create({
   },
   completed: {
   textDecorationLine: 'line-through',
-  color: 'gray'
+  color: '#6afe20ff'
 }
 });
 
