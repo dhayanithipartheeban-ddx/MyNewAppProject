@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
   },
   filterText: {
     fontSize: 16,
-    color: '#dbdb24ff'
+    color: '#dbdb24ff',
+    fontWeight:500
   },
   activeFilter: {
     fontWeight: 'bold',

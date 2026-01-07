@@ -1,7 +1,7 @@
 import PropsStyle from '@/styles/TodoPrps.styles';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
-
-import { MaterialIcons } from '@expo/vector-icons';
 
 type TodoItemProps = {
   text: string;
@@ -10,31 +10,44 @@ type TodoItemProps = {
   onDelete: () => void;
 };
 
-
 export default function TodoItem({
   text,
   completed,
   onToggle,
   onDelete
 }: TodoItemProps) {
+
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <View style={PropsStyle.item}>
-      <TouchableOpacity onPress={onToggle}>
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => setExpanded(!expanded)}
+      style={PropsStyle.container}
+    >
+      <View style={PropsStyle.textWrapper}>
         <Text
           style={[
             PropsStyle.text,
             completed && PropsStyle.completed
           ]}
+          numberOfLines={expanded ? undefined : 2}
         >
           {text}
         </Text>
-      </TouchableOpacity>
+      </View>
 
-      <TouchableOpacity onPress={onDelete}>
-        <MaterialIcons name="delete" size={24} color="#e5f45dff" />
-      </TouchableOpacity>
-    </View>
+      <View style={PropsStyle.actions}>
+        <TouchableOpacity onPress={onToggle}>
+          <Text style={PropsStyle.actionText}>
+            {completed ? '↩️' : '✅'}
+          </Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={onDelete}>
+          <MaterialIcons name="delete" size={24} color="#de8787ff" />
+        </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
   );
 }
-
-
