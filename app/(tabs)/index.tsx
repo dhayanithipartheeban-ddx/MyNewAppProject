@@ -34,6 +34,15 @@ export default function HomeScreen() {
 
   const [tasks, setTasks] = useState<Todo[]>([]);
 
+  type FilterType = 'all' | 'active' | 'completed';
+
+  const [filter, setFilter] = useState<FilterType>('all');
+
+  const filteredTasks = tasks.filter(task => {
+    if (filter === 'active') return !task.completed;
+    if (filter === 'completed') return task.completed;
+    return true; // all
+  });
 
 
   useEffect(() => {
@@ -114,8 +123,38 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
+        <View style={styles.filterRow}>
+          <TouchableOpacity onPress={() => setFilter('all')}>
+            <Text style={[
+              styles.filterText,
+              filter === 'all' && styles.activeFilter
+            ]}>
+              All
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setFilter('active')}>
+            <Text style={[
+              styles.filterText,
+              filter === 'active' && styles.activeFilter
+            ]}>
+              Active
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => setFilter('completed')}>
+            <Text style={[
+              styles.filterText,
+              filter === 'completed' && styles.activeFilter
+            ]}>
+              Completed
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+
         <FlatList
-          data={tasks}
+          data={filteredTasks}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <TodoItem

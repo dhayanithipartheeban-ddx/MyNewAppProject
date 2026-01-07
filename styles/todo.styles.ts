@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     borderColor: '#bccad2ff',
     borderRadius: 5,
     padding: 10,
-    color:"#C0C0C0"
+    color: "#C0C0C0"
   },
   addBtn: {
     backgroundColor: '#349aa1ff',
@@ -40,7 +40,22 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold'
   },
-  
+  filterRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 15
+  },
+  filterText: {
+    fontSize: 16,
+    color: '#dbdb24ff'
+  },
+  activeFilter: {
+    fontWeight: 'bold',
+    color: '#6afe20ff',
+    textDecorationLine: 'underline'
+  }
+
+
 });
 
 export default styles;
