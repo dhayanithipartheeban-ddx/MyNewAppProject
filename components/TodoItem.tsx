@@ -19,6 +19,7 @@ export default function TodoItem({
 
   const [expanded, setExpanded] = useState(false);
   const [isExpandable, setIsExpandable] = useState(false);
+  const [measured, setMeasured] = useState(false);
 
   return (
     <TouchableOpacity
@@ -36,15 +37,25 @@ export default function TodoItem({
             PropsStyle.text,
             completed && PropsStyle.completed
           ]}
-          numberOfLines={expanded ? undefined : 2}
+          numberOfLines={
+            !measured
+              ? undefined          // allow full render for measurement
+              : expanded
+                ? undefined          // expanded → full text
+                : 2                  // collapsed → max 2 lines
+          }
           onTextLayout={(e) => {
-            if (e.nativeEvent.lines.length > 2) {
-              setIsExpandable(true);
+            if (!measured) {
+              if (e.nativeEvent.lines.length > 2) {
+                setIsExpandable(true);
+              }
+              setMeasured(true);
             }
           }}
         >
           {text}
         </Text>
+
       </View>
 
       {/* SHOW ACTIONS ONLY WHEN NOT EXPANDED */}
@@ -63,5 +74,4 @@ export default function TodoItem({
       )}
     </TouchableOpacity>
   );
-
 }
