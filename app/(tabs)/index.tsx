@@ -110,7 +110,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Text style={styles.title}>📝 Todo List</Text>
+        <Text style={styles.title}>📝 Listivo</Text>
 
         <View style={styles.inputRow}>
           <TextInput
