@@ -33,7 +33,8 @@ const PropsStyle = StyleSheet.create({
     marginRight: 10
   },
   delete: {
-    fontSize: 20
+    fontSize: 20,
+    color:'#914040ff'
   }
 });
 

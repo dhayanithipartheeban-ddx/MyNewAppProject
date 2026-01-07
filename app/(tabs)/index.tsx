@@ -38,6 +38,10 @@ export default function HomeScreen() {
 
   const [filter, setFilter] = useState<FilterType>('all');
 
+  const totalCount = tasks.length;
+  const activeCount = tasks.filter(t => !t.completed).length;
+  const completedCount = tasks.filter(t => t.completed).length;
+
   const filteredTasks = tasks.filter(task => {
     if (filter === 'active') return !task.completed;
     if (filter === 'completed') return task.completed;
@@ -129,7 +133,7 @@ export default function HomeScreen() {
               styles.filterText,
               filter === 'all' && styles.activeFilter
             ]}>
-              All
+              All ({totalCount})
             </Text>
           </TouchableOpacity>
 
@@ -138,7 +142,7 @@ export default function HomeScreen() {
               styles.filterText,
               filter === 'active' && styles.activeFilter
             ]}>
-              Active
+              Active ({activeCount})
             </Text>
           </TouchableOpacity>
 
@@ -147,10 +151,11 @@ export default function HomeScreen() {
               styles.filterText,
               filter === 'completed' && styles.activeFilter
             ]}>
-              Completed
+              Completed ({completedCount})
             </Text>
           </TouchableOpacity>
         </View>
+
 
 
         <FlatList
