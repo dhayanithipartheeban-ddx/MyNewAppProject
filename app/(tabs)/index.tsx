@@ -14,9 +14,26 @@ import {
 
 
 export default function HomeScreen() {
+
+  const saveTasks = async (tasks: Todo[]) => {
+    try {
+      await AsyncStorage.setItem('todos', JSON.stringify(tasks));
+    } catch (error) {
+      console.log('Error saving tasks', error);
+    }
+  };
+
+
+  type Todo = {
+    id: string;
+    text: string;
+    completed: boolean;
+  };
+
   const [task, setTask] = useState('');
-  const [tasks, setTasks] = useState<string[]>([]);
-  
+
+  const [tasks, setTasks] = useState<Todo[]>([]);
+
   useEffect(() => {
     loadTasks();
   }, []);
@@ -25,7 +42,7 @@ export default function HomeScreen() {
     try {
       const storedTasks = await AsyncStorage.getItem('todos');
       if (storedTasks) {
-        setTasks(JSON.parse(storedTasks));
+        setTasks(JSON.parse(storedTasks) as Todo[]);
       }
     } catch (error) {
       console.log('Error loading tasks', error);
@@ -37,25 +54,25 @@ export default function HomeScreen() {
   const addTask = () => {
     if (!task.trim()) return;
 
-    const updatedTasks = [...tasks, task];
+    const newTask: Todo = {
+      id: Date.now().toString(),
+      text: task,
+      completed: false,
+    };
+
+    const updatedTasks = [...tasks, newTask];
     setTasks(updatedTasks);
     saveTasks(updatedTasks);
     setTask('');
   };
 
-  const deleteTask = (index: number) => {
-    const updatedTasks = tasks.filter((_, i) => i !== index);
+
+  const deleteTask = (id: string) => {
+    const updatedTasks = tasks.filter(task => task.id !== id);
     setTasks(updatedTasks);
     saveTasks(updatedTasks);
   };
 
-  const saveTasks = async (tasks: string[]) => {
-    try {
-      await AsyncStorage.setItem('todos', JSON.stringify(tasks));
-    } catch (error) {
-      console.log('Error saving tasks', error);
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -79,11 +96,11 @@ export default function HomeScreen() {
 
         <FlatList
           data={tasks}
-          keyExtractor={(_, index) => index.toString()}
-          renderItem={({ item, index }) => (
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => (
             <TodoItem
-              text={item}
-              onDelete={() => deleteTask(index)}
+              text={item.text}
+              onDelete={() => deleteTask(item.id)}
             />
           )}
         />
