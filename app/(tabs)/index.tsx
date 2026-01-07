@@ -34,6 +34,8 @@ export default function HomeScreen() {
 
   const [tasks, setTasks] = useState<Todo[]>([]);
 
+
+
   useEffect(() => {
     loadTasks();
   }, []);
@@ -73,7 +75,14 @@ export default function HomeScreen() {
     saveTasks(updatedTasks);
   };
 
+  useEffect(() => {
+    const checkStorage = async () => {
+      const value = await AsyncStorage.getItem('todos');
+      console.log('Stored todos:', value);
+    };
 
+    checkStorage();
+  }, []);
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
