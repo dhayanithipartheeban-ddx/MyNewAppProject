@@ -18,7 +18,11 @@ const PropsStyle = StyleSheet.create({
     fontSize: 18,
     marginLeft: 10,
     
-  }
+  },
+  completed: {
+  textDecorationLine: 'line-through',
+  color: 'gray'
+}
 });
 
 export default PropsStyle;

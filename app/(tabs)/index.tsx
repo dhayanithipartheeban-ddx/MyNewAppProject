@@ -68,6 +68,17 @@ export default function HomeScreen() {
     setTask('');
   };
 
+  const toggleTask = (id: string) => {
+    const updatedTasks = tasks.map(task =>
+      task.id === id
+        ? { ...task, completed: !task.completed }
+        : task
+    );
+
+    setTasks(updatedTasks);
+    saveTasks(updatedTasks);
+  };
+
 
   const deleteTask = (id: string) => {
     const updatedTasks = tasks.filter(task => task.id !== id);
@@ -109,6 +120,8 @@ export default function HomeScreen() {
           renderItem={({ item }) => (
             <TodoItem
               text={item.text}
+              completed={item.completed}
+              onToggle={() => toggleTask(item.id)}
               onDelete={() => deleteTask(item.id)}
             />
           )}
