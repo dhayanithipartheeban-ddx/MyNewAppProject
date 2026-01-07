@@ -54,7 +54,25 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#6afe20ff',
     textDecorationLine: 'underline'
-  }
+  },
+  header: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  marginBottom: 20
+},
+appIcon: {
+  width: 50,
+  height: 50,
+  marginRight: 10,
+  borderRadius: 8
+},
+appTitle: {
+  fontSize: 24,
+  fontWeight: 'bold',
+  color: '#222'
+}
+
 
 
 });

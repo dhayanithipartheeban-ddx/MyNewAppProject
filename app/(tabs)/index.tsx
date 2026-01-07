@@ -3,8 +3,12 @@ import styles from '@/styles/todo.styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
+import MaskedView from '@react-native-masked-view/masked-view';
+import { LinearGradient } from 'expo-linear-gradient';
+
 import {
   FlatList,
+  Image,
   ImageBackground,
   Text,
   TextInput,
@@ -12,8 +16,39 @@ import {
   View
 } from 'react-native';
 
+function GradientText({
+  text,
+  style
+}: {
+  text: string;
+  style?: any;
+}) {
+  return (
+    <MaskedView
+      maskElement={
+        <Text style={[style, { backgroundColor: 'transparent' }]}>
+          {text}
+        </Text>
+      }
+    >
+      <LinearGradient
+        colors={['#2196F3', '#2ECC71']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+      >
+        {/* Invisible text to size the gradient */}
+        <Text style={[style, { opacity: 0 }]}>
+          {text}
+        </Text>
+      </LinearGradient>
+    </MaskedView>
+  );
+}
+
 
 export default function HomeScreen() {
+
+  
 
   const saveTasks = async (tasks: Todo[]) => {
     try {
@@ -110,7 +145,14 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
-        <Text style={styles.title}>📝 Listivo</Text>
+        <View style={styles.header}>
+          <Image
+            source={require('../../assets/images/logo-listivo.png')}
+            style={styles.appIcon}
+          />
+          <GradientText text="Listivo" style={styles.appTitle} />
+
+        </View>
 
         <View style={styles.inputRow}>
           <TextInput

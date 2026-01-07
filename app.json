@@ -12,20 +12,14 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/logo-listivo.png",
-        "backgroundImage": "./assets/images/logo-listivo.png",
-        "monochromeImage": "./assets/images/logo-listivo.png"
-      },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
-    },
-    "splash": {
-      "image": "./assets/images/listivo-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
+  "adaptiveIcon": {
+    "foregroundImage": "./assets/images/logo-listivo.png",
+    "backgroundColor": "#ffffff"
+  },
+  "edgeToEdgeEnabled": true,
+  "predictiveBackGestureEnabled": false
+},
+    
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
@@ -35,7 +29,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo-listivo.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
