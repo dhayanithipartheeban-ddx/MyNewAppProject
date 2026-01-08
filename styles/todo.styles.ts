@@ -58,21 +58,23 @@ const styles = StyleSheet.create({
   header: {
   flexDirection: 'row',
   alignItems: 'center',
-  justifyContent: 'center',
-  marginBottom: 20
+  justifyContent: 'space-between',
+  paddingHorizontal: 16,
 },
 appIcon: {
   width: 50,
   height: 50,
-  marginRight: 10,
   borderRadius: 8
 },
 appTitle: {
   fontSize: 24,
   fontWeight: 'bold',
   color: '#222'
-}
-
+},
+logout:{
+   color: 'white', 
+   fontSize: 18
+   }
 
 
 });

@@ -5,21 +5,14 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo-listivo.png",
-    "scheme": "mynewappproject",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true
     },
     "android": {
-  "adaptiveIcon": {
-    "foregroundImage": "./assets/images/logo-listivo.png",
-    "backgroundColor": "#ffffff"
-  },
-  "edgeToEdgeEnabled": true,
-  "predictiveBackGestureEnabled": false
-},
-    
+      "package": "com.kuttu.listivo"
+    },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
@@ -42,6 +35,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "0258fbac-c622-4067-b6b6-3851b569eec2"
+      }
     }
   }
 }

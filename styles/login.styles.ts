@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 24,
-    backgroundColor: '#ffffff'
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 28,
@@ -33,7 +33,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     fontWeight: 'bold'
-  }
+  },
+  linkText: {
+    textAlign: 'center',
+    marginTop: 18,
+    fontSize: 14,
+    color: '#1e3c72',
+  },
 });
 
 export default styles;
